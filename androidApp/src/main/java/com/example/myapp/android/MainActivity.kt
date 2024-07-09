@@ -1,5 +1,6 @@
 package com.example.myapp.android
 
+import android.bluetooth.le.ScanSettings
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.myapp.Greeting
+import com.juul.kable.Scanner
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,14 +33,22 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+val scanner = Scanner {
+    scanSettings = ScanSettings.Builder()
+        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+        .build()
+}
+
 @Composable
 fun GreetingView(texts: List<String>) {
-    texts?.forEach { it -> Text(text = it + "\n")};
+    texts?.forEach { it -> Text(text = it + "\n")}
+    println(scanner)
 }
 
 @Preview
 @Composable
 fun DefaultPreview() {
+    println(scanner)
     MaterialTheme {
         val greeting = remember { Greeting().greet() }
 
