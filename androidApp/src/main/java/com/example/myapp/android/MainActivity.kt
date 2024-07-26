@@ -51,7 +51,6 @@ fun DefaultPreview() {
     println(scanner)
     MaterialTheme {
         val greeting = remember { Greeting().greet() }
-
         Column(
             modifier = Modifier.padding(all = 20.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
